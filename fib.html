@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ktra so fib</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/5b5442c791.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+        <script  type ="text/javascript">
+        window.onload=function(){
+        document.getElementById('submit-function').addEventListener('submit',(event)=>{
+            event.preventDefault();
+            async function nhapso() {
+                    
+                   
+                    let ans = await function () {
+                        var a = 1;
+                    var b = 1;
+                    var f = 0;
+                    let i = document.getElementById("inputso").value;
+                    let e = Number(i);
+    
+                        if (e < 1) return false;
+                        if (e == 1) return true;
+                        while (f <= e) {
+                            f = a + b;
+                            a = b;
+                            b = f;
+                            if (f == e) return true;
+                            if (f > e) return false;
+                        }
+                        return false;
+    
+                    }
+                    console.log(ans());
+                    if(ans())
+    
+    document.getElementById("answer").innerHTML ="so "+document.getElementById("inputso").value+" thuoc day fibonacy";
+else 
+document.getElementById("answer").innerHTML ="so "+document.getElementById("inputso").value+" khong thuoc day fibonacy";
+
+
+                }
+               
+               nhapso();
+               
+            });
+        }
+//          
+//                 function test(event){
+//                     event.preventDefault();
+//                 }
+            </script>
+    <div class="container">
+        <form style="margin-top:30vh" id="submit-function" class="form-group">
+            <label>Nhập 1 số</label>
+            <input type="text" id="inputso"  class="form-control" style="width: 10vw"/>
+            <button type="submit" class="btn btn-default bt-primary" style="margin-top:1vh">Send</button>
+            <p id="answer" style="font-size: 18px"></p>
+            <hr/>
+            <h2>bai 2</h2>
+           <h3 id="bai2"></h3>
+           
+           <hr/>
+           <h2>Bai 3</h2>
+           <p id="sosinhvien"></p>
+           <script>  
+           var ketqua="";
+           function scaryClown(i) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(i);
+    }, 1000);
+  });
+}
+var msg="";
+async function mSg(i) {
+   
+  msg = msg+" "+await scaryClown(i);
+  if(i==6) return;
+ document.getElementById("bai2").innerHTML=msg;
+  mSg(i+1);
+  
+}
+
+   mSg(1);
+          
+    
+                var t=0;
+                const arr=[{id:1,name:"an",mark:9},{id:2,name:"Binh",mark:3},{id:3,name:"Hoa",mark:6},{id:4,name:"nam",mark:7}]
+                     function demsohocsinh(){
+                      for(i=0;i<arr.length;i++)
+                         if(arr[i].mark>5) t++;
+                         if(t>0)
+                       document.getElementById("sosinhvien").innerHTML="có "+t+" hoc sinh pass";
+                       else  document.getElementById("sosinhvien").innerHTML="khong co hoc sinh nao pass";
+                     }
+                     demsohocsinh();
+                         </script>
+        </form>
+        
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hue's signin</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/5b5442c791.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <style>
+    .container{
+        width: 30vw;
+        height: 30wh;
+        margin-top: 20vh;
+    }
+    
+    </style>
+    <script>
+        var t;
+        const err = "1px solid red";
+        const trueform = "0.5px solid #555"
+        function Phonenumber() {
+            var phone = document.getElementById("phonenumber").value;
+            if(phone.length==0){
+                erroform("phonenumber");
+                document.getElementById("wrongPhone").innerHTML = "Please enter your phone number";
+                document.getElementById("wrongPhone").style.display = "block";
+            }
+            else
+            if (!/((09|03|07|08|05)+([0-9]{8})\b)/g.test(phone)) {
+                erroform("phonenumber");
+                document.getElementById("wrongPhone").innerHTML = "Invalid number";
+                document.getElementById("wrongPhone").style.display = "block";
+            } else if (phone.length == 0) {
+                erroform("phonenumber");
+                document.getElementById("wrongPhone").style.display = "block";
+                document.getElementById("wrongPhone").innerHTML = "Please enter your phone number";
+            }
+            else {
+                document.getElementById("wrongPhone").style.display = "none";
+                trueForm("phonenumber");
+            }
+        }
+        function erroform(e) {
+            document.getElementById(e).style.border = err;
+
+        }
+        function trueForm(e) {
+            document.getElementById(e).style.border = trueform;
+        }
+        function Repeatpass() {
+            var pass1 = document.getElementById("password");
+
+          var pass2 = document.getElementById("Password2");
+if(pass1.value.length==0){
+    erroform("password");
+    document.getElementById("passwrong").innerHTML="please enter your password!";
+    document.getElementById("passwrong").style.display="block";
+    erroform("Password2");
+    document.getElementById("wrong").innerHTML="Please enter your password first!";
+    document.getElementById("wrong").style.display="block";
+}
+            else
+            if (pass2.value.length == 0) {
+                document.getElementById("wrong").style.display = "block";
+                document.getElementById("wrong").innerHTML = "Please enter repeat password!";
+                erroform("Password2");
+
+               
+            }
+            else
+            if (pass1.value != pass2.value) {
+                document.getElementById("wrong").innerHTML = "Repeat password is not true!";
+                erroform("Password2");
+
+                document.getElementById("wrong").style.display = "block";
+            }
+            else {
+                document.getElementById("wrong").style.display = "none";
+              trueForm("Password2");
+            }
+        }
+        function Myemail() {
+            var email = document.getElementById("email").value;
+            if (email.length == 0) {
+                erroform("email");
+                document.getElementById("invalidEmail").style.display = "block";
+                document.getElementById("invalidEmail").innerHTML = "Enter your email";
+            }
+            else
+                if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                    erroform("email");
+                    document.getElementById("invalidEmail").style.display = "block";
+                    document.getElementById("invalidEmail").innerHTML = "Invalid email";
+
+                } else {
+                    trueForm("email");
+                    document.getElementById("invalidEmail").style.display = "none";
+                }
+        }
+
+        function Username() {
+
+            var username = document.getElementById("username").value;
+            if (username.length == 0) {
+                erroform("username");
+                document.getElementById("invalidUsername").style.display = "block";
+                document.getElementById("invalidUsername").innerHTML = "Enter your username";
+            }
+            else
+                if (username.length < 6) {
+                    document.getElementById("passwrong").style.display = "block";
+                    document.getElementById("username").style.border = err;
+                    document.getElementById("invalidUsername").innerHTML = "Username must has at least 6 characters!";
+                } else {
+                    trueForm("username");
+                    document.getElementById("invalidUsername").style.display = "none";
+                }
+        }
+        function myfunction() {
+            var pass1 = document.getElementById("password").value;
+            if (pass1.length == 0) {
+                document.getElementById("passwrong").style.display = "block";
+                document.getElementById("passwrong").innerHTML = "Please enter your password!";
+
+                erroform("password");
+            }
+            else
+                if (pass1.length < 6) {
+                    document.getElementById("passwrong").style.display = "block";
+                    document.getElementById('passwrong').innerHTML = "Password mus has at least 6 characters!";
+                    erroform("password");
+                }
+                else {
+                    trueForm("password");
+                    document.getElementById("passwrong").style.display = "none";
+
+                }
+        }
+        function checkbox() {
+            t = 1;
+        }
+        function handelSubmit() {
+           /* var phone = document.getElementById("phonenumber").value;
+            var pass1 = document.getElementById("password");
+          var pass2 = document.getElementById("Password2");
+          var email = document.getElementById("email").value;
+          var username = document.getElementById("username").value;
+          if (email.length == 0) {
+                erroform("email");
+                document.getElementById("invalidEmail").style.display = "block";
+                document.getElementById("invalidEmail").innerHTML = "Enter your email";
+            }
+          if(phone.length==0){
+                erroform("phonenumber");
+                document.getElementById("wrongPhone").innerHTML = "Please enter your phone number";
+                document.getElementById("wrongPhone").style.display = "block";
+            }
+            if (pass2.value.length == 0) {
+                document.getElementById("wrong").style.display = "block";
+                document.getElementById("wrong").innerHTML = "Please enter repeat password!";
+                erroform("Password2");
+
+               
+            }
+            if (pass1.length == 0) {
+                document.getElementById("passwrong").style.display = "block";
+                document.getElementById("passwrong").innerHTML = "Please enter your password!";
+
+                erroform("password");
+            }
+            if (username.length == 0) {
+                erroform("username");
+                document.getElementById("invalidUsername").style.display = "block";
+                document.getElementById("invalidUsername").innerHTML = "Enter your username";
+            }*/
+            if (t != 1) {
+                erroform("Checkbox");
+                document.getElementById("checkBox").innerHTML = "please Agree!";
+                document.getElementById("checkBox").display = "block";
+            }
+            else {
+                trueForm("checkBox");
+                document.getElementById("checkBox").display = "none";
+            }
+        }
+    </script>
+    <div class="container " >
+        <h1 class="text-center">Sign in</h1>
+        <p>Please fill out the form to create an account</p>
+        <div>
+
+            <form class="form-group">
+                <label for="username" class="text-left">Username</label>
+
+                <input type="text" class="form-control" id="username" onchange=Username() />
+                <p id="invalidUsername"></p>
+                <label for="email">Email</label>
+
+                <input type="text" class="form-control" id="email" onchange=Myemail() />
+                <p id="invalidEmail"></p>
+                <label for="password">Password</label>
+
+                <input type="password" class="form-control" id="password" onchange=myfunction()  />
+                <p id="passwrong"> </p>
+                <label for="password2">Repeat password</label>
+                <input type="password" class="form-control" id="Password2" onchange=Repeatpass()  />
+                <p id="wrong" style="display:none"></p>
+                <label for="phonenumber">Phone number</label>
+                <input type="text" class="form-control" id="phonenumber" onchange=Phonenumber() />
+                <p id="wrongPhone" style="display:none">/p>
+
+                <input type="checkbox" value="1" id="checkBox" /> I agree with <span style="color:aqua">Terms &
+                        Privacy</span>
+                    <p id="Checkbox"></p>
+                    <div class=" text-center">
+                        <input type="submit" class="btn btn-default btn-primary" value="Sign in" onchange=handelSubmit() />
+
+                    </div>
+            </form>
+
+        </div>
+
+    </div>
+</body>
+
+</html>

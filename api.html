@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bai 3</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/5b5442c791.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <style>
+    
+    input, 
+input:active, 
+input:focus {     
+    outline: 0;     
+    outline-style: none;     
+    outline-width: 0; 
+}
+    </style>
+        <script type="text/javascript">
+         window.onload=function(){
+            document.getElementById('submit-function').addEventListener('submit',(event)=>{
+            event.preventDefault();
+             
+         
+         var heso = 0;
+                async function traso() {
+                x = document.getElementById("fromcurrency").value;
+                x = x.toUpperCase();
+               
+                y = document.getElementById("tocurrency").value;
+                y = y.toUpperCase();
+                
+                z = document.getElementById("amount").value;
+                z = Number(z);
+                
+                if(x!=''&&y!=''&&z!=''){
+                let response = await fetch('http://data.fixer.io/api/latest?access_key=f68b13604ac8e570a00f7d8fe7f25e1b&format=1');
+    
+                let commits = await response.json();
+                if(commits['rates'][y]!=undefined&&commits['rates'][x]!=undefined){
+                heso = Math.floor(commits['rates'][y] / commits['rates'][x] * z);
+                let x2=x.toLowerCase();
+                let y2=y.toLowerCase();
+                let currentcy1 = await fetch('https://restcountries.eu/rest/v2/currency/'+x2);
+                let country1= await currentcy1.json();
+    
+    let currentcy2 = await fetch('https://restcountries.eu/rest/v2/currency/'+y2);
+                let country2= await currentcy2.json();
+                console.log(commits);
+                
+                document.getElementById("hienthi").style.display= "block";
+               document.getElementById("ketqua").innerHTML= z+" "+x+" = "+heso+" "+y;
+               document.getElementById("infor").innerHTML= x+" : "+country1[0].name;
+               document.getElementById("infor2").innerHTML=y+" : "+country2[0].name;
+               document.getElementById("fromcurrency").style.border="0.5px solid gray";
+               document.getElementById("tocurrency").style.border="0.5px solid gray";
+               document.getElementById("amount").style.border="0.5px solid gray";
+               document.getElementById("wrong1").style.display= "none";
+               document.getElementById("wrong2").style.display= "none";
+               document.getElementById("wrong3").style.display= "none";
+                }
+                 if(commits['rates'][x]==undefined){document.getElementById("wrong1").innerHTML= "invalid input";
+                 document.getElementById("fromcurrency").style.border="0.5px solid red";
+                 document.getElementById("wrong1").style.display= "block";
+                 document.getElementById("ketqua").innerHTML= "";
+               document.getElementById("infor").innerHTML= "";
+               document.getElementById("infor2").innerHTML="";
+               document.getElementById("hienthi").style.display= "none";
+                }
+                if(commits['rates'][y]==undefined){document.getElementById("wrong2").innerHTML= "invalid input";
+                 document.getElementById("tocurrency").style.border="0.5px solid red";
+                 document.getElementById("wrong2").style.display= "block";
+                 document.getElementById("ketqua").innerHTML= "";
+               document.getElementById("infor").innerHTML= "";
+               document.getElementById("infor2").innerHTML="";
+               document.getElementById("hienthi").style.display= "none";
+                }
+            }
+            if(x==''){document.getElementById("wrong1").innerHTML= "enter from currency";
+                 document.getElementById("fromcurrency").style.border="0.5px solid red";
+                 document.getElementById("wrong1").style.display= "block";
+                 document.getElementById("ketqua").innerHTML= "";
+               document.getElementById("infor").innerHTML= "";
+               document.getElementById("infor2").innerHTML="";
+               document.getElementById("hienthi").style.display= "none";}
+        
+        if(y==''){document.getElementById("wrong2").innerHTML= "enter to currency";
+                 document.getElementById("tocurrency").style.border="0.5px solid red";
+                 document.getElementById("wrong2").style.display= "block";
+                 document.getElementById("ketqua").innerHTML= "";
+               document.getElementById("infor").innerHTML= "";
+               document.getElementById("infor2").innerHTML="";
+               document.getElementById("hienthi").style.display= "none";}
+               if(z==''){document.getElementById("wrong3").innerHTML= "enter amount";
+                 document.getElementById("amount").style.border="0.5px solid red";
+                 document.getElementById("wrong3").style.display= "block";
+                 document.getElementById("ketqua").innerHTML= "";
+               document.getElementById("infor").innerHTML= "";
+               document.getElementById("infor2").innerHTML="";
+               document.getElementById("hienthi").style.display= "none";}
+          
+             }     traso();
+         
+        
+    })}
+        </script>
+    <div class="container" >
+        <h1>Bai 1</h1>
+        <h2 id="inso"></h2>
+        <script>
+        var i=1;
+             var ans="";
+         function Inso(i){
+             let t=setTimeout(() => {
+                 ans=ans+" "+i;
+                 document.getElementById("inso").innerHTML=ans;
+                 Inso(i+1);
+             }, 1000);
+             if(i==6) {clearTimeout(t);return;}
+         }
+         Inso(1);</script>
+        <hr />
+        <h2>Bai 2</h2>
+        <form class="form-group" id="submit-function" >
+            <label>From currency</label>
+            <input type="text" id="fromcurrency" class="form-control"  />
+<p id="wrong1"></p>
+            <label>To currency</label>
+            <input type="text" id="tocurrency" class="form-control" />
+<p id="wrong2"></p>
+            <label>Amount</label>
+            <input type="text" id="amount" class="form-control"  />
+            <p id="wrong3"></p>
+            <br/>
+            <button  class="btn btn-default btn-primary" style="margin-left:26vw" >Submit</button> 
+        </form>
+        <div >
+               
+        <h3 style="display: none;margin-left:27vw" id="hienthi"  > Kết quả</h3>
+        
+        <div style="font-size: 20px;margin-left:25vw">
+        <p id="ketqua"></p>
+        <p id="infor"></p>
+        <p id="infor2"></p>
+    </div>
+    </div>
+    </div>
+  
+</body>
+
+</html>
